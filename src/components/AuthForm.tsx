@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { ShieldCheck, Mail, Lock } from "lucide-react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import { supabase } from "@/lib/supabaseClient"
 
 interface AuthFormProps {
   mode: "login" | "signup"
@@ -15,33 +16,48 @@ export default function AuthForm({ mode }: AuthFormProps) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
-  // Supabase MCP integration placeholders
   const handleSignInWithPassword = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: supabase.auth.signInWithPassword({ email, password })
-    console.log("Signing in with:", email)
-    localStorage.setItem("truetrace_user", email)
-    router.push("/dashboard")
+    setError(null)
+    setLoading(true)
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password })
+      if (error) { setError(error.message); return }
+      router.push("/dashboard")
+    } finally {
+      setLoading(false)
+    }
   }
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (password !== confirmPassword) {
-      alert("Passwords do not match")
-      return
+    setError(null)
+    if (password !== confirmPassword) { setError("Passwords do not match"); return }
+    setLoading(true)
+    try {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: { emailRedirectTo: `${window.location.origin}/dashboard` },
+      })
+      if (error) { setError(error.message); return }
+      setError("Check your email to confirm your account before signing in.")
+    } finally {
+      setLoading(false)
     }
-    // TODO: supabase.auth.signUp({ email, password })
-    console.log("Signing up with:", email)
-    localStorage.setItem("truetrace_user", email)
-    router.push("/dashboard")
   }
 
   const handleSignInWithOAuth = async (provider: string) => {
-    // TODO: supabase.auth.signInWithOAuth({ provider: 'google' })
-    console.log(`Continue with ${provider}`)
-    router.push("/dashboard")
+    setError(null)
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: provider as 'google',
+      options: { redirectTo: `${window.location.origin}/dashboard` },
+    })
+    if (error) setError(error.message)
   }
 
   return (
@@ -116,11 +132,18 @@ export default function AuthForm({ mode }: AuthFormProps) {
 
           <button 
             type="submit"
-            className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-2.5 rounded-lg border-glow transition-all duration-300 mt-6"
+            disabled={loading}
+            className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-2.5 rounded-lg border-glow transition-all duration-300 mt-6 disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {isLogin ? "Sign In" : "Create Account"}
+            {loading ? 'Processing...' : (isLogin ? "Sign In" : "Create Account")}
           </button>
         </form>
+
+        {error && (
+          <p className={`text-sm text-center mt-4 ${
+            error.startsWith('Check your email') ? 'text-emerald-400' : 'text-red-400'
+          }`}>{error}</p>
+        )}
 
         <div className="my-6 flex items-center">
           <div className="flex-1 border-t border-white/10"></div>
