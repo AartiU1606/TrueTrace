@@ -6,15 +6,14 @@ import VerificationCard from "@/components/VerificationCard"
 import FraudMap from "@/components/FraudMap"
 import FraudReportForm from "@/components/FraudReportForm"
 import SellerCard from "@/components/SellerCard"
-import PredictiveAnalysisPanel, { PredictiveResult } from "@/components/PredictiveAnalysisPanel"
-import { Package, Flag, Users, Activity } from "lucide-react"
+import ConsumerLawChatbot from "@/components/ConsumerLawChatbot"
+import { Package, Flag, Users, Activity, Scale } from "lucide-react"
 
 export default function DashboardPage() {
   const [analyzing, setAnalyzing] = useState(false)
   const [showResults, setShowResults] = useState(false)
   const [activeCategory, setActiveCategory] = useState("All")
   const [verificationResult, setVerificationResult] = useState<VerificationResult | null>(null)
-  const [predictiveResult, setPredictiveResult] = useState<PredictiveResult | null>(null)
 
   const handleAnalyze = (result: VerificationResult) => {
     setAnalyzing(true)
@@ -24,10 +23,6 @@ export default function DashboardPage() {
       setAnalyzing(false)
       setShowResults(true)
     }, 2000)
-  }
-
-  const handlePredictiveResult = (result: PredictiveResult) => {
-    setPredictiveResult(result)
   }
 
   // Derive display values from dynamic result
@@ -113,7 +108,7 @@ export default function DashboardPage() {
 
         <div className="grid lg:grid-cols-2 gap-8">
           <div className="h-full">
-            <FileUpload onAnalyze={handleAnalyze} onPredictiveResult={handlePredictiveResult} />
+            <FileUpload onAnalyze={handleAnalyze} />
           </div>
 
           <div className="h-full relative min-h-[400px]">
@@ -130,20 +125,15 @@ export default function DashboardPage() {
                 <p className="text-sm text-gray-400 text-center max-w-xs">Cross-referencing global database and marketplace seller history.</p>
               </div>
             ) : showResults && verificationResult ? (
-              <div className="space-y-6">
-                <VerificationCard
-                  score={score}
-                  risk={risk}
-                  status={statusLabel}
-                  sellerScore={sellerTrust}
-                  priceAnomaly={priceAnomaly}
-                  marketRisk={marketRisk}
-                  packagingSimilarity={packagingSimilarity}
-                />
-                {predictiveResult && (
-                  <PredictiveAnalysisPanel result={predictiveResult} />
-                )}
-              </div>
+              <VerificationCard
+                score={score}
+                risk={risk}
+                status={statusLabel}
+                sellerScore={sellerTrust}
+                priceAnomaly={priceAnomaly}
+                marketRisk={marketRisk}
+                packagingSimilarity={packagingSimilarity}
+              />
             ) : (
               <div className="absolute inset-0 glass-card rounded-2xl flex flex-col items-center justify-center opacity-50 border-white/5">
                 <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4">
@@ -215,6 +205,20 @@ export default function DashboardPage() {
             <SellerCard name="LuxuryWatches_Req" marketplace="TataCLiQ" verifiedProduct="Rolex Submariner Date" />
           )}
         </div>
+      </section>
+
+      {/* Section 5 - Consumer Law Assistant */}
+      <section id="consumer-law" className="scroll-mt-28 pt-8 border-t border-white/10">
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold font-mono text-white flex items-center gap-3">
+            Consumer Law Assistant
+            <span className="bg-emerald-500/10 text-emerald-400 text-xs px-2 py-1 rounded border border-emerald-500/30 uppercase">AI Legal Guide</span>
+          </h2>
+          <p className="text-gray-400 mt-2">
+            Get AI-powered guidance on Indian consumer protection laws, counterfeit product rights, complaint procedures, and legal remedies.
+          </p>
+        </div>
+        <ConsumerLawChatbot />
       </section>
 
     </div>
