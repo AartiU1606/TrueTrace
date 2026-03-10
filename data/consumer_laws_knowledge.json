@@ -1,0 +1,315 @@
+{
+    "laws": [
+        {
+            "id": "cpa2019",
+            "name": "Consumer Protection Act 2019",
+            "keywords": [
+                "consumer protection",
+                "counterfeit",
+                "fake product",
+                "defective product",
+                "consumer rights",
+                "unfair trade",
+                "complaint",
+                "refund",
+                "compensation",
+                "consumer court"
+            ],
+            "summary": "The Consumer Protection Act 2019 is the primary Indian law protecting consumers. It covers unfair trade practices, product liability, e-commerce consumer rights, and establishes the Central Consumer Protection Authority (CCPA). Selling counterfeit or substandard goods is an 'unfair trade practice' under Section 2(47). Consumers can claim refund, replacement, or compensation. Penalties include imprisonment up to 7 years and fines up to Rs 10 lakh for selling spurious goods.",
+            "key_sections": [
+                "Section 2(47): Defines unfair trade practice including selling counterfeit goods",
+                "Section 17: Establishes District Consumer Disputes Redressal Commission for claims up to Rs 50 lakh",
+                "Section 24: Establishes State Consumer Disputes Redressal Commission for claims Rs 50 lakh to Rs 2 crore",
+                "Section 28: Establishes National Consumer Disputes Redressal Commission for claims above Rs 2 crore",
+                "Section 84: Product liability — manufacturers and sellers liable for harm from defective products",
+                "Section 88: Misleading advertisements — penalty up to Rs 10 lakh"
+            ],
+            "remedies": [
+                "Full refund of amount paid",
+                "Replacement with genuine product",
+                "Compensation for injury or loss",
+                "Punitive damages in egregious cases"
+            ]
+        },
+        {
+            "id": "legal_metrology",
+            "name": "Legal Metrology Act 2009",
+            "keywords": [
+                "weight",
+                "measure",
+                "labeling",
+                "MRP",
+                "packaging",
+                "misleading label",
+                "quantity"
+            ],
+            "summary": "The Legal Metrology Act 2009 ensures that goods sold in India have correct weight, measure, and labeling. Counterfeit products often violate this act by having incorrect labels, false MRP, or missing mandatory declarations. Violations are punishable with fines and imprisonment.",
+            "key_sections": [
+                "Mandatory declarations on packaged commodities: name of manufacturer, net quantity, MRP, date of manufacture",
+                "Penalty for non-compliance: fine up to Rs 25,000 for first offence, imprisonment of up to 1 year for subsequent offences"
+            ],
+            "remedies": [
+                "File complaint with Legal Metrology Department",
+                "Demand proper labeling and refund"
+            ]
+        },
+        {
+            "id": "it_act",
+            "name": "Information Technology Act 2000 (as amended)",
+            "keywords": [
+                "online fraud",
+                "cyber crime",
+                "online marketplace",
+                "digital purchase",
+                "internet fraud",
+                "e-commerce fraud"
+            ],
+            "summary": "The IT Act governs online transactions and digital fraud. Section 66C covers identity theft and Section 66D covers cheating by impersonation via computer. Online sale of counterfeit goods may involve cheating under Section 420 IPC and fraud under IT Act. File complaints at the Cyber Crime Portal (cybercrime.gov.in).",
+            "key_sections": [
+                "Section 66C: Punishment for identity theft — imprisonment up to 3 years",
+                "Section 66D: Cheating by personation — imprisonment up to 3 years",
+                "Section 43: Penalty for unauthorized access to computer"
+            ],
+            "remedies": [
+                "File cyber crime complaint at cybercrime.gov.in",
+                "Report to local cyber crime cell",
+                "File FIR at nearest police station"
+            ]
+        },
+        {
+            "id": "sale_of_goods",
+            "name": "Sale of Goods Act 1930",
+            "keywords": [
+                "goods",
+                "seller",
+                "buyer",
+                "implied warranty",
+                "fitness",
+                "merchantability",
+                "sale contract"
+            ],
+            "summary": "The Sale of Goods Act 1930 implies conditions and warranties in every sale. The seller impliedly warrants that goods are of merchantable quality and fit for their purpose. If a product turns out to be counterfeit, it breaches the implied condition of title and description, entitling the buyer to reject goods and claim a full refund.",
+            "key_sections": [
+                "Section 14: Implied condition as to title — seller must have right to sell",
+                "Section 15: Sale by description — goods must correspond with description",
+                "Section 16: Implied conditions as to quality or fitness",
+                "Section 41-43: Rights of the buyer to reject defective goods"
+            ],
+            "remedies": [
+                "Reject the goods and claim full refund",
+                "Sue seller for damages",
+                "Claim compensation for consequential losses"
+            ]
+        },
+        {
+            "id": "trademarks_act",
+            "name": "Trade Marks Act 1999 & Intellectual Property Laws",
+            "keywords": [
+                "trademark",
+                "counterfeit",
+                "fake brand",
+                "brand imitation",
+                "logo",
+                "intellectual property",
+                "IP"
+            ],
+            "summary": "Selling goods with a counterfeit trademark is a criminal offence under the Trade Marks Act 1999. Section 103 prescribes imprisonment up to 3 years and fine up to Rs 2 lakh for applying a false trade mark. Consumers can report counterfeit branded goods to law enforcement and the brand owner.",
+            "key_sections": [
+                "Section 103: Penalty for applying false trade marks, trade descriptions — imprisonment up to 3 years and/or fine",
+                "Section 29: Infringement of registered trade mark",
+                "Section 135: Relief in suits for infringement"
+            ],
+            "remedies": [
+                "File police complaint for criminal trademark infringement",
+                "Contact the original brand's legal team",
+                "Report to Customs for imported counterfeits"
+            ]
+        },
+        {
+            "id": "ecommerce_rules",
+            "name": "Consumer Protection (E-Commerce) Rules 2020",
+            "keywords": [
+                "amazon",
+                "flipkart",
+                "online shopping",
+                "marketplace",
+                "seller",
+                "online platform",
+                "ecommerce"
+            ],
+            "summary": "These rules mandate that e-commerce platforms must have a clear grievance redressal mechanism, and sellers must provide accurate information. Platforms are responsible for ensuring product authenticity. If you bought a fake product online, the platform's grievance officer must be contacted first, and if unresolved, you can approach the consumer forum.",
+            "key_sections": [
+                "Rule 4: Prohibition of misleading advertisements on e-commerce platforms",
+                "Rule 5: Duties of e-commerce entities — grievance officer appointment, redressal within 30 days",
+                "Rule 6: Sellers on marketplace must have prior written consent of brand for selling their products"
+            ],
+            "remedies": [
+                "Contact platform grievance officer",
+                "Escalate to Consumer Forum if unresolved in 30 days",
+                "File complaint with CCPA"
+            ]
+        }
+    ],
+    "authorities": [
+        {
+            "name": "National Consumer Helpline",
+            "description": "Government helpline for consumer complaints",
+            "contact": "Phone: 1800-11-4000 (toll-free), 14404 | Website: consumerhelpline.gov.in",
+            "suitable_for": [
+                "Any consumer grievance",
+                "Guidance on rights",
+                "Complaint registration"
+            ],
+            "keywords": [
+                "helpline",
+                "consumer helpline",
+                "NCH",
+                "government helpline"
+            ]
+        },
+        {
+            "name": "Consumer Courts / Consumer Forums",
+            "description": "Quasi-judicial bodies under the Consumer Protection Act 2019. District forum for claims up to Rs 50 lakh, State Commission up to Rs 2 crore, National Commission above Rs 2 crore.",
+            "contact": "Visit your nearest District Consumer Disputes Redressal Commission | Online: edaakhil.nic.in",
+            "suitable_for": [
+                "Seeking refund, replacement, compensation",
+                "Formal legal action against seller",
+                "Product liability cases"
+            ],
+            "keywords": [
+                "consumer court",
+                "consumer forum",
+                "DCDRC",
+                "NCDRC",
+                "consumer commission",
+                "legal action"
+            ]
+        },
+        {
+            "name": "Central Consumer Protection Authority (CCPA)",
+            "description": "Established under Consumer Protection Act 2019 to protect consumer rights and prevent unfair trade practices.",
+            "contact": "Website: ccpa-india.nic.in | Email complaints through National Consumer Helpline",
+            "suitable_for": [
+                "Mass complaints affecting multiple consumers",
+                "Misleading advertisements",
+                "Unfair trade practices"
+            ],
+            "keywords": [
+                "CCPA",
+                "central consumer protection",
+                "authority"
+            ]
+        },
+        {
+            "name": "Cyber Crime Portal",
+            "description": "Ministry of Home Affairs portal for online fraud and cyber crime complaints.",
+            "contact": "Website: cybercrime.gov.in | Helpline: 1930",
+            "suitable_for": [
+                "Online purchase fraud",
+                "Financial fraud",
+                "Counterfeit goods sold online with fraudulent intent"
+            ],
+            "keywords": [
+                "cyber crime",
+                "online fraud",
+                "internet fraud",
+                "cybercrime.gov.in",
+                "1930"
+            ]
+        },
+        {
+            "name": "E-commerce Platform Grievance Officer",
+            "description": "Mandatory under E-Commerce Rules 2020. Each platform (Amazon, Flipkart, etc.) must have a designated grievance officer.",
+            "contact": "Find in platform's 'Contact Us' or 'Grievance' section",
+            "suitable_for": [
+                "First step for online purchase complaints",
+                "Getting refund from marketplace"
+            ],
+            "keywords": [
+                "amazon",
+                "flipkart",
+                "meesho",
+                "snapdeal",
+                "online platform",
+                "marketplace complaint"
+            ]
+        }
+    ],
+    "procedures": [
+        {
+            "topic": "Filing a Complaint in Consumer Court",
+            "keywords": [
+                "how to file",
+                "file complaint",
+                "consumer court",
+                "procedure",
+                "steps",
+                "complaint process"
+            ],
+            "steps": [
+                "Step 1: Gather evidence — keep your purchase receipt, invoice, product photos, screenshots of seller listing, and any communication with the seller.",
+                "Step 2: Send a legal notice — before filing in court, send a written complaint/legal notice to the seller demanding remedy within 15-30 days.",
+                "Step 3: File online — visit edaakhil.nic.in to file your complaint online against the seller. Registration is free.",
+                "Step 4: Choose the right forum — District Commission (up to Rs 50 lakh), State Commission (Rs 50 lakh to Rs 2 crore), National Commission (above Rs 2 crore).",
+                "Step 5: Pay nominal fee — consumer court fees are very low, typically Rs 200-5000 depending on claim amount.",
+                "Step 6: Appear for hearing — either in person or through an advocate. The court will issue notice to the opposite party.",
+                "Step 7: Await judgment — consumer cases are typically resolved within 90-150 days."
+            ]
+        },
+        {
+            "topic": "Reporting a Counterfeit Online Seller",
+            "keywords": [
+                "report seller",
+                "report fake seller",
+                "report counterfeit",
+                "report online fraud",
+                "how to report"
+            ],
+            "steps": [
+                "Step 1: Report to the Marketplace — use 'Report this seller/product' feature on the platform. Document proof of counterfeiting.",
+                "Step 2: Contact Platform Grievance Officer — email the platform's grievance officer (mandatory appointment under E-Commerce Rules 2020).",
+                "Step 3: File on National Consumer Helpline — go to consumerhelpline.gov.in or call 1800-11-4000.",
+                "Step 4: Report to CCPA — for systemic fraud, report to ccpa-india.nic.in.",
+                "Step 5: File at Cyber Crime Portal — if online fraud involved, file at cybercrime.gov.in or call 1930.",
+                "Step 6: File Police FIR — visit your nearest police station with evidence to file an FIR under IPC sections 420 (cheating) and Trade Marks Act.",
+                "Step 7: Contact the Brand — notify the original brand's India customer service team about the counterfeit seller."
+            ]
+        },
+        {
+            "topic": "Evidence Collection for Counterfeit Claims",
+            "keywords": [
+                "evidence",
+                "proof",
+                "collecting evidence",
+                "documentation"
+            ],
+            "steps": [
+                "Preserve original packaging, labels, and product",
+                "Take clear photographs of the product and any defects or discrepancies",
+                "Save all purchase receipts, invoices, and order confirmation emails",
+                "Screenshot the original seller listing with price, seller name, and product description",
+                "Record any communications with the seller",
+                "Get an independent assessment or test report if possible (especially for electronics/health products)",
+                "Note the date of purchase and delivery"
+            ]
+        },
+        {
+            "topic": "Refund Rights for Counterfeit Products",
+            "keywords": [
+                "refund",
+                "replacement",
+                "money back",
+                "return",
+                "refund rights"
+            ],
+            "steps": [
+                "You have an absolute right to a full refund if product is counterfeit or materially different from what was described",
+                "Contact the seller or platform customer care immediately upon discovering the issue",
+                "Use the platform's official return/refund process — document every step",
+                "If seller refuses, escalate to platform grievance officer (response within 30 days mandatory)",
+                "If platform fails, file in consumer forum at edaakhil.nic.in for refund + compensation",
+                "You can also claim special damages for mental agony, harassment, and any losses caused by the fake product"
+            ]
+        }
+    ]
+}
