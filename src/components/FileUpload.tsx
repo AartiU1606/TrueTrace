@@ -3,6 +3,7 @@
 import { useState, useRef } from "react"
 import { motion } from "framer-motion"
 import { Upload, Link2, Search, Store } from "lucide-react"
+import type { PredictiveResult } from "@/components/PredictiveAnalysisPanel"
 
 export interface VerificationResult {
   authenticity_score: number
@@ -15,9 +16,10 @@ export interface VerificationResult {
 
 interface FileUploadProps {
   onAnalyze: (result: VerificationResult) => void
+  onPredictiveResult?: (result: PredictiveResult) => void
 }
 
-export default function FileUpload({ onAnalyze }: FileUploadProps) {
+export default function FileUpload({ onAnalyze, onPredictiveResult }: FileUploadProps) {
   const [dragActive, setDragActive] = useState(false)
   const [uploadType, setUploadType] = useState<"file" | "link">("file")
   const [marketSearch, setMarketSearch] = useState("")
@@ -70,19 +72,41 @@ export default function FileUpload({ onAnalyze }: FileUploadProps) {
       formData.append("product_image", uploadedImage)
     }
 
+    // Build predictive formData (reuses same fields + image)
+    const predictiveFormData = new FormData()
+    predictiveFormData.append("seller_name", sellerName || "unknown_seller")
+    predictiveFormData.append("product_price", price || "5000")
+    predictiveFormData.append("average_market_price", "5000")
+    predictiveFormData.append("seller_rating", "80")
+    predictiveFormData.append("product_category", marketSearch || "General")
+    if (uploadedImage) {
+      predictiveFormData.append("product_image", uploadedImage)
+    }
+
     try {
-      const res = await fetch("/api/verify-product", {
-        method: "POST",
-        body: formData,
-      })
+      // Run both API calls in parallel
+      const [res, predictRes] = await Promise.all([
+        fetch("/api/verify-product", { method: "POST", body: formData }),
+        fetch("/api/predict-authenticity", { method: "POST", body: predictiveFormData }),
+      ])
 
       const json = await res.json()
-
       if (!res.ok || !json.success) {
         throw new Error(json.error ?? "Verification failed")
       }
-
       onAnalyze(json.data as VerificationResult)
+
+      // Handle predictive result independently
+      if (onPredictiveResult) {
+        try {
+          const predictJson = await predictRes.json()
+          if (predictRes.ok && predictJson.success) {
+            onPredictiveResult(predictJson.data as PredictiveResult)
+          }
+        } catch {
+          // Non-fatal: predictive panel stays hidden
+        }
+      }
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Unknown error"
       setError(message)

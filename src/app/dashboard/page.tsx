@@ -6,6 +6,7 @@ import VerificationCard from "@/components/VerificationCard"
 import FraudMap from "@/components/FraudMap"
 import FraudReportForm from "@/components/FraudReportForm"
 import SellerCard from "@/components/SellerCard"
+import PredictiveAnalysisPanel, { PredictiveResult } from "@/components/PredictiveAnalysisPanel"
 import { Package, Flag, Users, Activity } from "lucide-react"
 
 export default function DashboardPage() {
@@ -13,6 +14,7 @@ export default function DashboardPage() {
   const [showResults, setShowResults] = useState(false)
   const [activeCategory, setActiveCategory] = useState("All")
   const [verificationResult, setVerificationResult] = useState<VerificationResult | null>(null)
+  const [predictiveResult, setPredictiveResult] = useState<PredictiveResult | null>(null)
 
   const handleAnalyze = (result: VerificationResult) => {
     setAnalyzing(true)
@@ -22,6 +24,10 @@ export default function DashboardPage() {
       setAnalyzing(false)
       setShowResults(true)
     }, 2000)
+  }
+
+  const handlePredictiveResult = (result: PredictiveResult) => {
+    setPredictiveResult(result)
   }
 
   // Derive display values from dynamic result
@@ -107,7 +113,7 @@ export default function DashboardPage() {
 
         <div className="grid lg:grid-cols-2 gap-8">
           <div className="h-full">
-            <FileUpload onAnalyze={handleAnalyze} />
+            <FileUpload onAnalyze={handleAnalyze} onPredictiveResult={handlePredictiveResult} />
           </div>
 
           <div className="h-full relative min-h-[400px]">
@@ -124,15 +130,20 @@ export default function DashboardPage() {
                 <p className="text-sm text-gray-400 text-center max-w-xs">Cross-referencing global database and marketplace seller history.</p>
               </div>
             ) : showResults && verificationResult ? (
-              <VerificationCard
-                score={score}
-                risk={risk}
-                status={statusLabel}
-                sellerScore={sellerTrust}
-                priceAnomaly={priceAnomaly}
-                marketRisk={marketRisk}
-                packagingSimilarity={packagingSimilarity}
-              />
+              <div className="space-y-6">
+                <VerificationCard
+                  score={score}
+                  risk={risk}
+                  status={statusLabel}
+                  sellerScore={sellerTrust}
+                  priceAnomaly={priceAnomaly}
+                  marketRisk={marketRisk}
+                  packagingSimilarity={packagingSimilarity}
+                />
+                {predictiveResult && (
+                  <PredictiveAnalysisPanel result={predictiveResult} />
+                )}
+              </div>
             ) : (
               <div className="absolute inset-0 glass-card rounded-2xl flex flex-col items-center justify-center opacity-50 border-white/5">
                 <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4">
