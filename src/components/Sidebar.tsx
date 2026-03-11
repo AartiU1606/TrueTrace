@@ -2,14 +2,14 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { ShieldAlert, Map, Flag, Users, Menu, X, Scale } from "lucide-react"
+import { Cpu, Map, Flag, Users, Menu, X, Scale } from "lucide-react"
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true)
-  const [activeNavItem, setActiveNavItem] = useState("Product Verification")
+  const [activeNavItem, setActiveNavItem] = useState("AI Prediction Engine")
 
   const navItems = [
-    { name: "Product Verification", icon: ShieldAlert, path: "#verification" },
+    { name: "AI Prediction Engine", icon: Cpu, path: "#predict" },
     { name: "Risk Intelligence Map", icon: Map, path: "#map" },
     { name: "Fraud Reports", icon: Flag, path: "#reports" },
     { name: "Verified Sellers", icon: Users, path: "#sellers" },

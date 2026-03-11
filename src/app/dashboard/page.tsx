@@ -1,47 +1,18 @@
 "use client"
 
 import { useState } from "react"
-import FileUpload, { VerificationResult } from "@/components/FileUpload"
-import VerificationCard from "@/components/VerificationCard"
+import PredictiveUpload, { PredictiveResult } from "@/components/PredictiveUpload"
+import PredictiveAnalysisCard from "@/components/PredictiveAnalysisCard"
 import FraudMap from "@/components/FraudMap"
 import FraudReportForm from "@/components/FraudReportForm"
 import SellerCard from "@/components/SellerCard"
 import ConsumerLawChatbot from "@/components/ConsumerLawChatbot"
-import { Package, Flag, Users, Activity, Scale } from "lucide-react"
+import { Package, Flag, Users, Activity, Cpu } from "lucide-react"
 
 export default function DashboardPage() {
   const [analyzing, setAnalyzing] = useState(false)
-  const [showResults, setShowResults] = useState(false)
+  const [predictResult, setPredictResult] = useState<PredictiveResult | null>(null)
   const [activeCategory, setActiveCategory] = useState("All")
-  const [verificationResult, setVerificationResult] = useState<VerificationResult | null>(null)
-
-  const handleAnalyze = (result: VerificationResult) => {
-    setAnalyzing(true)
-    // Brief spinner for UX feedback, then display results
-    setTimeout(() => {
-      setVerificationResult(result)
-      setAnalyzing(false)
-      setShowResults(true)
-    }, 2000)
-  }
-
-  // Derive display values from dynamic result
-  const score = verificationResult?.authenticity_score ?? 72
-  const sellerTrust = verificationResult?.seller_trust ?? 65
-  const priceAnomaly = verificationResult?.price_anomaly ?? "Normal"
-  const marketRisk = verificationResult?.market_risk ?? "Low"
-  const packagingSimilarity = verificationResult?.packaging_similarity ?? 85
-  const recommendation = verificationResult?.recommendation ?? "CAUTION"
-
-  const risk: "Low" | "Medium" | "High" =
-    score > 80 ? "Low" : score > 50 ? "Medium" : "High"
-
-  const statusLabel =
-    recommendation === "SAFE"
-      ? "Safe"
-      : recommendation === "CAUTION"
-        ? "Suspicious"
-        : "Avoid Purchase"
 
   return (
     <div className="space-y-24 max-w-7xl mx-auto">
@@ -96,50 +67,56 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      {/* Section 1 - Product Verification */}
-      <section id="verification" className="pt-4 scroll-mt-28">
+      {/* Section 1 - AI Prediction Engine (replaces Product Verification) */}
+      <section id="predict" className="pt-4 scroll-mt-28">
         <div className="mb-8">
           <h1 className="text-3xl font-bold font-mono text-white flex items-center gap-3">
-            Product Verification
-            <span className="bg-emerald-500/10 text-emerald-400 text-xs px-2 py-1 rounded border border-emerald-500/30 uppercase">Primary Scan</span>
+            AI Prediction Engine
+            <span className="bg-emerald-500/10 text-emerald-400 text-xs px-2 py-1 rounded border border-emerald-500/30 uppercase">Multimodal AI</span>
           </h1>
-          <p className="text-gray-400 mt-2">Upload product evidence or supply a marketplace listing for security clearance.</p>
+          <p className="text-gray-400 mt-2">
+            Upload a product image or paste a link, add listing metadata, and our AI will predict authenticity probability.
+          </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
           <div className="h-full">
-            <FileUpload onAnalyze={handleAnalyze} />
+            <PredictiveUpload
+              onPredict={(result) => setPredictResult(result)}
+              onLoading={(val) => setAnalyzing(val)}
+            />
           </div>
 
-          <div className="h-full relative min-h-[400px]">
+          <div className="h-full relative min-h-[460px]">
             {analyzing ? (
               <div className="absolute inset-0 glass-card rounded-2xl flex flex-col items-center justify-center border-emerald-500/20 glow">
                 <div className="relative w-24 h-24 mb-6">
-                  <div className="absolute inset-0 border-4 border-emerald-500/20 rounded-full"></div>
-                  <div className="absolute inset-0 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
-                  <div className="absolute inset-0 flex items-center justify-center text-emerald-400 font-mono text-sm">
-                    AI
+                  <div className="absolute inset-0 border-4 border-emerald-500/20 rounded-full" />
+                  <div className="absolute inset-0 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Cpu className="w-8 h-8 text-emerald-400 animate-pulse" />
                   </div>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">Analyzing Product Signature...</h3>
-                <p className="text-sm text-gray-400 text-center max-w-xs">Cross-referencing global database and marketplace seller history.</p>
+                <h3 className="text-lg font-bold text-white mb-2 font-mono">Running AI Analysis...</h3>
+                <p className="text-sm text-gray-400 text-center max-w-xs">
+                  CLIP model scanning image · Metadata scoring · Fusion prediction...
+                </p>
+                <div className="flex gap-1 mt-4">
+                  {[0, 1, 2].map((i) => (
+                    <div key={i} className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />
+                  ))}
+                </div>
               </div>
-            ) : showResults && verificationResult ? (
-              <VerificationCard
-                score={score}
-                risk={risk}
-                status={statusLabel}
-                sellerScore={sellerTrust}
-                priceAnomaly={priceAnomaly}
-                marketRisk={marketRisk}
-                packagingSimilarity={packagingSimilarity}
-              />
+            ) : predictResult ? (
+              <PredictiveAnalysisCard result={predictResult} />
             ) : (
               <div className="absolute inset-0 glass-card rounded-2xl flex flex-col items-center justify-center opacity-50 border-white/5">
                 <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4">
-                  <span className="text-gray-500">?</span>
+                  <Cpu className="w-8 h-8 text-gray-500" />
                 </div>
-                <p className="text-gray-400 px-8 text-center">Awaiting data input to generate intelligence report.</p>
+                <p className="text-gray-400 px-8 text-center text-sm">
+                  Upload a product image and fill in listing details to run an AI prediction.
+                </p>
               </div>
             )}
           </div>
